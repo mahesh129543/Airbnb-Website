@@ -7,11 +7,13 @@
 </head>
 <body>
     <h2>creating new Listing</h2>
-    <form methode="post"   action="/listings">
+    <form method="post"   action="/listings">
         <input type="text" name="listing[title]" placeholder="title">
     </br></br>
         <textarea name="listing[description]" placeholder="description"></textarea><br><br>
-        <input type="text" name="listing[image]" placeholder="image"><br></br>
+       <input type="text" name="listing[image][0][url]" placeholder="Image URL">
+      
+<br><br>
         <input type="number" name="listing[price]" placeholder="price"><br><br>
         <input type="text" name="listing[location]" placeholder="location"><br><br>
         <input type="text" name="listing[country]" placeholder="country"><br><br>
