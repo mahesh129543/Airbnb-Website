@@ -7,7 +7,7 @@ const Listing = require('./models/listing');
 const path = require('path');
 const methodOverride = require('method-override'); // ✅ correct path
 
-const MONGO_url="mongodb://127.0.0.1:27017/wanderlust"
+const MONGO_url="mongodb://127.0.0.1:27017/mahesh"
 main().then( () =>
      console.log('Connected to MongoDB...'))
     .catch(err => console.error('Could not connect to MongoDB...', err));

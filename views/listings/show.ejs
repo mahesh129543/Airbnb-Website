@@ -6,10 +6,9 @@
     <h2>Listing Details</h2>
     </div>
     <div class="card col-6 offset-3 sh">
-         <img src="<%= listing.image[0].url %>" class="card-img-top show-img" alt="listing-image">
+         <img src="<%= listing.image%>" class="card-img-top show-img" alt="listing-image">
   <div class="card-body">
     <p class="card-text"><b><%= listing.title %></b><br>
-        <%= listing.image[0].caption %><br>
     <%= listing.description %><br>
     &#8377;<%= listing.price != null ? listing.price.toLocaleString("en-IN") : 'Price not available' %><br>/night<br>
     <%= listing.location %><br>
