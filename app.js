@@ -6,6 +6,7 @@ const ejsMate=require('ejs-mate');
 const Listing = require('./models/listing');
 const path = require('path');
 const methodOverride = require('method-override'); // ✅ correct path
+const wrapAsync = require('./utils/wrapAsync');
 
 const MONGO_url="mongodb://127.0.0.1:27017/mahesh"
 main().then( () =>
@@ -41,11 +42,16 @@ app.get('/listings', async(req, res) => {
      res.render("listings/show", {listing});   
   });
   //create route
- app.post('/listings', async (req, res) => {
-    const newlisting = new Listing(req.body.listing);
+ app.post('/listings', async (req, res,next) => {
+    try{ const newlisting = new Listing(req.body.listing);
     await newlisting.save();
     console.log("Saved:", newlisting); // ✅ Add this
     res.redirect("/listings");
+    }
+    catch(err){
+       next(err);
+    }
+   
 });
 //edit route
 app.get('/listings/:id/edit', async (req, res) => {
@@ -65,6 +71,10 @@ app.delete('/listings/:id', async (req, res) => {
    let deletedlisting =await Listing.findByIdAndDelete(id);
     console.log(deletedlisting);
     res.redirect('/listings');
+});
+
+app.use(( err, req, res, next) => {
+    res.status('Not found');
 });
 
 
